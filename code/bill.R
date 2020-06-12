@@ -388,7 +388,7 @@ doProcessing <- function(data, mode, params, part) {
 
 # =====================================================================================
 # define which part
-part <- 2
+part <- 3
 plot_dir <- ""
 
 # create dir if  not exists
