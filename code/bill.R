@@ -7,6 +7,7 @@ library(hash)
 library(tibble)
 library(infotheo)
 library(stringr)
+library(vcd)
 
 # define three part columns
 index_column <- c("id")
@@ -282,16 +283,21 @@ doProcessing <- function(data, mode, params, part) {
         cat("ranger has been defined !\n\n")
     }
     
-    # hypothesis
+    # hypothesis and plot contingency tables
     if (length(params$hypothesis > 0) && mode == "train"){
         
         cat("Check relationship between each categorical data and answer... \n\n")
         for (i in params$hypothesis){
-            params$hypothesis <- c(i, answer_column)
-            hypothesis_data <- data[params$hypothesis]
+            current_hypothesis <- c(i, answer_column)
+            hypothesis_data <- data[current_hypothesis]
             hypothesis_table <- data.frame(table(hypothesis_data))
             hypothesis_freq <- as.numeric(as.character((hypothesis_table$Freq)))
             hypothesis_matrix <- matrix(hypothesis_freq, nrow=2)
+            file_name = paste(getwd(), plot_dir, "/", i, "_", answer_column, "_contingency_table.png", sep="")
+            png(filename = file_name)
+            main_title <- paste("contingency table between variables\n", str_replace_all(i, "_", " "), "and", str_replace_all(answer_column, "_", " "))
+            mosaic(hypothesis_matrix, shade=TRUE, legend=TRUE, main = main_title)
+            dev.off()
             
             # chi square
             print_hypothesis(hypothesis_matrix, i)
@@ -388,7 +394,7 @@ doProcessing <- function(data, mode, params, part) {
 
 # =====================================================================================
 # define which part
-part <- 3
+part <- 2
 plot_dir <- ""
 
 # create dir if  not exists
