@@ -19,31 +19,40 @@ save2img <- function(target, file_name, plot_type, main_title, x_title, y_title)
 }
 
 do_corr_process <- function(data) {
-  corr_processed_data <- data.frame(data$id,
-                                    data$age,
-                                    data$sex,
-                                    data$chest_pain,
-                                    data$resting_bp,
-                                    data$cholestoral,
-                                    # data$thalium_scan,
-                                    # data$slope,
-                                    # data$vessels,
-                                    data$heart_disease)
-  headers <- c("id",
-               "age",
+  new_data <- data[complete.cases(data), ]
+  corr_processed_data <- data.frame(new_data$age,
+                                    new_data$sex,
+                                    new_data$chest_pain,
+                                    new_data$resting_bp,
+                                    new_data$cholestoral,
+                                    new_data$high_sugar,
+                                    new_data$ecg,
+                                    new_data$max_rate,
+                                    new_data$exercise_angina,
+                                    new_data$st_depression,
+                                    new_data$slope,
+                                    new_data$vessels,
+                                    new_data$thalium_scan,
+                                    new_data$heart_disease)
+  headers <- c("age",
                "sex",
                "chest_pain",
                "resting_bp",
                "cholestoral",
-               # "thalium_scan",
-               # "slope",
-               # "vessels",
+               "high_sugar",
+               "ecg",
+               "max_rate",
+               "exercise_angina",
+               "st_depression",
+               "slope",
+               "vessels",
+               "thalium_scan",
                "heart_disease")
 
   names(corr_processed_data) <- headers
   
   corr_matrix <- cor(corr_processed_data)
-
+  
   save2img(corr_matrix, "/plots/first_part_corr_plot.png", "corr", "", "", "")
 }
 
