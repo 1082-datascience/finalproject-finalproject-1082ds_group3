@@ -133,11 +133,11 @@ A breif introduction about your project, i.e., what is your goal?
     - https://www.rdocumentation.org/packages/vcd/
 * 其他資料：
     - Age interval（年齡區間劃分）
-        - 出自《老年性生理學和老年的性生活》一書
+        - 出自《[老年性生理學和老年的性生活](http://www.wunan.com.tw/www2/download/preview/1JBK.PDF)》一書
     - Blood pressure interval（血壓區間劃分）
     - Cholestoral interval（總膽固醇區間劃分）
-        - 啟新診所
-        - 馬偕醫院
+        - [啟新診所](https://www.ch.com.tw/index.aspx?sv=ch_fitness&chapter=ACC000007)
+        - [馬偕醫院](http://www.mmh.org.tw/taitam/endoc/dia-edu-b04.htm)
 
 
 
