@@ -14,7 +14,7 @@ round_df <- function(x) {
 # read argument
 args = commandArgs(trailingOnly=TRUE)
 if (length(args)==0) {
-  stop("USAGE: Rscript hw5_studentID.R --fold n --train Titanic_Data/train.csv --test Titanic_Data/test.csv --report performance.csv --predict predict.csv", call.=FALSE)
+  stop("USAGE: Rscript model.R --fold n --train Data/train.csv --test Data/test.csv --report performance.csv --predict predict.csv", call.=FALSE)
 }
 i<-1
 
@@ -44,8 +44,13 @@ train <-train[-1]
 
 summary(train)
 
+n_fold <- as.integer(n_fold)
+prob <- 1/as.integer(n_fold)
+
+col = length(train) #col
+d_size = nrow(train)
+
 # fill na's of age (vessels,thalium_scan)
-#train<-na.omit(train)
 vessels.model <- rpart(vessels ~ age+sex+chest_pain+resting_bp+cholestoral+high_sugar+ecg+max_rate+exercise_angina+st_depression+slope+heart_disease
                        ,data=train[!is.na(train$vessels), ],method='class')
 train$vessels[is.na(train$vessels)]<- predict(vessels.model, newdata=train[is.na(train$vessels),],type = "class")
@@ -69,14 +74,18 @@ train$thalium_scan <- as.factor(train$thalium_scan)
 
 # age_normalize
 # train$age <- with(train, (age - min(age)) / (max(age) - min(age)))
+
+#resting_bp cut in bins
 resting_bp_cut <- cut(train$resting_bp, c(93, 113, 133, 160, 192))
 train$resting_bp_without_label <- as.numeric(resting_bp_cut)
 
 #min_max_normalization
 #train$resting_bp <- with(train, (resting_bp - min(resting_bp)) / (max(resting_bp) - min(resting_bp)))
+
+#slope transformed into 0,1
 train$slope_label <- sapply(train$slope, function(x) {ifelse(x==1, 1,0)})
 
-
+# one - hot encoding 
 categorical_frames <- c("thalium_scan")
 drop <- c()
 
@@ -97,15 +106,7 @@ drop<-c(drop,"thalium_scan")
 print(drop)
 train <- train[ , !(names(train) %in% drop)]
 
-write.table(train, file="g.csv", row.names = F, quote = F,sep=",")
-
-
-n_fold <- as.integer(n_fold)
-prob <- 1/as.integer(n_fold)
-
-col = length(train) #col
-d_size = nrow(train)
-
+#write.table(train, file="g.csv", row.names = F, quote = F,sep=",")
 
 set.seed(4)
 train <- train[sample(d_size),]
@@ -174,7 +175,6 @@ for(i in 1:n_fold){
   acc_val <- c(acc_val,mean(acc_val))
   acc_test <- c(acc_test,mean(acc_test))
   
-  #I choose the test model based on auc, but not accuracy(I have calculated but not used)
   best_moodel <- which.max(acc_test)
   model_name <- paste("model",best_moodel,".rds",sep="")
   model <- readRDS(model_name)
@@ -196,14 +196,11 @@ for(i in 1:n_fold){
   
   test$thalium_scan <- as.factor(test$thalium_scan)
   
-  #age_cut <- cut(test$age, c(28, 43, 55, 65, 77))
-  #test$age_interval_without_label <- as.numeric(age_cut)
-  #test$age <- with(test, (age - min(age)) / (max(age) - min(age)))
-  
   resting_bp_cut <- cut(test$resting_bp, c(93, 113, 133, 160, 192))
   test$resting_bp_without_label <- as.numeric(resting_bp_cut)
   
   test$slope_label <- sapply(test$slope, function(x) {ifelse(x==1, 1,0)})
+  
   
   for(i in 1:length(categorical_frames)){
     
