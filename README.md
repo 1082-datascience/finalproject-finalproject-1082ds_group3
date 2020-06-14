@@ -15,8 +15,8 @@ A breif introduction about your project, i.e., what is your goal?
 * 資料前處理
 
     ```R
-    Rscript code/bill.R
-    Rscript code/1st_part_process.R
+    Rscript code/data_processing_1.R
+    Rscript code/data_processing_2.R
     ```
 * 模型訓練及驗證：
 
