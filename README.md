@@ -8,7 +8,14 @@
 * 蕭郁君, 109753203
 
 ### Goal
-A breif introduction about your project, i.e., what is your goal?
+* 若鐵達尼存活預測是
+    * 初入資料科學、Kaggle競賽的熱門入門題
+    * 初入特徵工程，了解其過程及特徵選取
+    * 瞭解資料科學的運作過程
+* 那此次的心臟病分類預測競賽就是
+    * 正式實作資料科學的流程
+    * 較深入進行特徵工程，用各種假設檢定、熵來了解特徵之間對答案及模型的重要性
+    * 遇到實務上的問題並嘗試著解決
 
 ### Demo 
 
@@ -33,7 +40,7 @@ A breif introduction about your project, i.e., what is your goal?
 ## Folder organization and its related information
 
 ### docs
-* Your presentation, (1082_datascience_FP_3.pptx)[1082_datascience_FP_3.pptx], by **Jun. 15**
+* Your presentation, [1082_datascience_FP_3.pptx](1082_datascience_FP_3.pptx), by **Jun. 15**
 
 ### data
 
