@@ -28,7 +28,7 @@
 * 模型訓練及驗證：
 
     ```R
-    Rscript code/model_glm.R
+    Rscript code/model_glm.R --fold k --train [csv file path] --test [csv file path] --report [performance csv path] --predict [output result csv path]
     Rscript code/finalXGB.R --train [csv file path] --test [csv file path] --predict [output result csv path]
     ```
 * 視覺化：
