@@ -1,4 +1,4 @@
-# Title of your final project
+# EC524: Heart-disease classification 心臟疾病預測分類
 
 ### Groups
 * 王柏仁, 108753204
@@ -88,29 +88,23 @@ A breif introduction about your project, i.e., what is your goal?
 
 ### code
 
-* 使用之模型：XGBoost / Logistic Regression
+* 對於此次比賽我們使用模型有：XGBoost / Logistic Regression
 
-* 模型比較與調教
-=> 利用 xgb.importance 找出較重要的特徵並訓練模型
-=> 相對於 Null Model，我們有針對飽和模型進行 Baseline 模型之前的訓練，並利用 T Test 找到較重要的特徵後，進行該特徵的強化與處理
-=> 用 try and error 的精神，根據不同且較重要的特徵選取（結合），進行訓練，挑選較好的模型
-=> 根據 proposed-final 模型，我們設不同的 seed 來訓練模型
+* 針對模型訓練，我們採取以下方式：
+    - 利用 xgb.importance 找出較重要的特徵並訓練模型
+    - 相對於 Null Model，我們有針對飽和模型進行 Baseline 模型之前的訓練，並利用 T Test 找到較重要的特徵後，進行該特徵的強化與處理
+    - 用 try and error 的精神，根據不同且較重要的特徵選取（結合），進行訓練，挑選較好的模型
+    - 根據 proposed-final 模型，我們設不同的 seed 來訓練模型
 
-* 驗證模型之方法：K-Fold Cross Validation
+* 我們使用 K-Fold Cross Validation 來進行模型驗證
 
 ### results
 
-* 衡量模型好壞之標準
-=> Accuracy, Test Error
+* 我們使用了 Accuracy, Test Error 來進行衡量，以找到最佳之模型
 
-* Is your improvement significant?
-=> 針對不同的資料處理及標籤設定，會又不同結果
-=> 不同的模型、seed 也會影響結果。
-=> 綜合以上，我們最後且最佳模型有很大進步
+* 針對不同的資料處理及標籤設定，會有不同訓練結果。加上我們採取不同標籤的結合來訓練模型，以及改變 seed 也會影響結果。綜合以上，我們最後且最佳模型有很大進步
 
-* 實作後之回饋與反思
-=> 資料的特徵工程及選擇，因為不知道何者是最重要且必要的特徵
-訓練時的抽樣方法也需多加要研究
+* 對於此次比賽的結果， 我們認為資料的特徵工程及選擇較為困難，因為不知道何者是最重要且必要的特徵。此外，訓練時的抽樣方法也需多加要研究
 
 ## Reference
 * Paper：
