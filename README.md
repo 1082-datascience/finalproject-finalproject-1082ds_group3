@@ -40,7 +40,7 @@
 ## Folder organization and its related information
 
 ### docs
-* Your presentation, [1082_datascience_FP_3.pptx](1082_datascience_FP_3.pptx), by **Jun. 15**
+* Your presentation, [1082_datascience_FP_3.pptx](docs/1082_datascience_FP_3.pptx), by **Jun. 15**
 
 ### data
 
