@@ -1,5 +1,5 @@
-png(file="/docs/XGBoost_validation.png")
-data <- read.csv(paste0(getwd(), "/docs/performance_XGBoost.csv"))
+png(file=paste0(getwd(), "/docs/XGBoost_validation.png"))
+data <- read.csv(paste0(getwd(), "/results/performance/performance_XGBoost.csv"))
 x = data[,1]
 y = data[,3]
 plot(x, y, type = "l",main="XGBoost cross validation",xlab="Round",ylab="Test error")# ylim = c(-5, 20))
@@ -7,8 +7,8 @@ dev.off()
 
 rm(list = ls())
 
-png(file="/docs/Regression_validation.png")
-data <- read.csv(paste0(getwd(), "/docs/performance_glm.csv"))
+png(file=paste0(getwd(), "/docs/Regression_validation.png"))
+data <- read.csv(paste0(getwd(), "/results/performance/performance_glm.csv"))
 x = data[,1]
 y = data[,2]
 y2 = data[,3]
